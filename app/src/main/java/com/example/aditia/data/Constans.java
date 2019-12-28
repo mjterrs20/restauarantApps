@@ -13,4 +13,6 @@ public class Constans {
             "/user";
     public static final String UPDATE_PROFILE_USER = WEB_URL_RESTORAN +
             "/user/update";
+    public static final String CREATE_RESTAURANT = WEB_URL_RESTORAN + "restaurant/create";
+    public static final String DELETE_RESTAURANT = WEB_URL_RESTORAN + "restaurant/delete";
 }

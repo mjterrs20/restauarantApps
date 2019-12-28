@@ -1,5 +1,6 @@
 package com.example.aditia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,6 +18,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.example.aditia.data.Constans;
 import com.example.aditia.data.Session;
+import com.example.aditia.model.RestoranResponse;
 import com.example.aditia.utils.DialogUtils;
 import com.example.aditia.model.LoginResponse;
 
@@ -48,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .getAsObject(LoginResponse.class, new ParsedRequestListener() {
                     @Override
                     public void onResponse(Object response) {
+                        System.out.println(nama.getText().toString());
                         progressDialog.dismiss();
                         if (((LoginResponse) response).getLogin() != null)
                         {
@@ -64,6 +67,8 @@ public class ProfileActivity extends AppCompatActivity {
     private void loadDataRes(LoginResponse response) {
         nama.setText(response.getLogin().getNama());
         userId.setText(response.getLogin().getUserid());
+        System.out.println("ini cuy");
+        System.out.println(nama.getText().toString());
     }
     private void initBinding() {
         nama = findViewById(R.id.tv_name);
@@ -85,6 +90,59 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+    //Method ini digunakan untuk menampilkan menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_profile_account, menu);
+        return true;
+    }
+    //Menthod ini digunakan untuk menangani kejadian saat OptionMenu diklik
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_create_restaurant:
+                Intent i = new Intent(ProfileActivity.this, CreateRestaurantActivity.class);
+                i.putExtra("userId", userId.getText().toString());
+                startActivity(i);
+                break;
+            case R.id.menu_delete_restaurant:
+                if (session.getUserId().isEmpty()){
+                    Toast.makeText(ProfileActivity.this,"You don't have a Restaurant", Toast.LENGTH_SHORT).show();
+                }else{
+                    deleteRestaurant(userId.getText().toString());
+                }
+                break;
+        }
+        return true;
+    }
+
+    public void deleteRestaurant(String userId) {
+        DialogUtils.openDialog(this);
+        AndroidNetworking.post(Constans.DELETE_RESTAURANT+"/"+userId)
+                .addBodyParameter("userid", userId)
+                .build()
+                .getAsObject(RestoranResponse.class, new ParsedRequestListener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        if (response instanceof RestoranResponse) {
+                            RestoranResponse res = (RestoranResponse) response;
+                            if (res.getStatus().equals("success")) {
+                                Toast.makeText(ProfileActivity.this,"Berhasil menghapus restauran", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(ProfileActivity.this,"Gagal gagal menghapus restauran", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        DialogUtils.closeDialog();
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(ProfileActivity.this, "Terjadi kesalahan API : "+anError.getCause().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Terjadi kesalahan API", Toast.LENGTH_SHORT).show();
+                        DialogUtils.closeDialog();
+                    }
+                });
     }
 
 }
