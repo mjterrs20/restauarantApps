@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,21 +45,21 @@ public class DashboardActivity extends AppCompatActivity {
     //Method Search
     private void initSearch(){
         svRestaurant.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    loadItem(GET_SEARCH_RESTAURANT + query);
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    return false;
-                }
-            });
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                loadItem(GET_SEARCH_RESTAURANT + query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         svRestaurant.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                loadItem(GET_LIST_RESTAURANT);
-                return false;
+            loadItem(GET_LIST_RESTAURANT);
+            return false;
             }
         });
     }
@@ -75,7 +76,10 @@ public class DashboardActivity extends AppCompatActivity {
     //Menthod ini digunakan untuk menangani kejadian saat OptionMenu diklik
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
+            case R.id.menu_account:
+                startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
+                break;
             case R.id.menu_logout:
                 session.logoutUser();
                 break;
@@ -93,43 +97,43 @@ public class DashboardActivity extends AppCompatActivity {
         rv.hasFixedSize();
         rv.setAdapter(adapter);
         adapter.setOnItemClickListener(new
-                                               RestaurantAdapter.OnItemClickListener() {
-                                                   @Override
-                                                   public void onClick(int position) {
-                                                       Toast.makeText(DashboardActivity.this, "Clicked Item - " +
-                                                               position, Toast.LENGTH_SHORT).show();
-                                                   }
-                                               });
+           RestaurantAdapter.OnItemClickListener() {
+               @Override
+               public void onClick(int position) {
+                   Toast.makeText(DashboardActivity.this, "Clicked Item - " +
+                           position, Toast.LENGTH_SHORT).show();
+               }
+           });
     }
     //Method untuk load data dari api
     public void loadItem(String url){
-//show progress dialog
-        progressDialog.setMessage("Please Wait..");
-        progressDialog.show();
-        AndroidNetworking.get(url)
-                .build()
-                .getAsObject(ListRestaurantResponse.class, new
-                        ParsedRequestListener() {
-                            @Override
-                            public void onResponse(Object response) {
-                                if(response instanceof ListRestaurantResponse){
-//disable progress dialog
-                                    progressDialog.dismiss();
-//null data check
-                                    if (((ListRestaurantResponse) response).getData() !=
-                                            null && ((ListRestaurantResponse) response).getData().size() > 0){
-                                        adapter.swap(((ListRestaurantResponse)
-                                                response).getData());
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                }
-                            }
-                            @Override
-                            public void onError(ANError anError) {
-                                progressDialog.dismiss();
-                                Toast.makeText(DashboardActivity.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+        //show progress dialog
+    progressDialog.setMessage("Please Wait..");
+    progressDialog.show();
+    AndroidNetworking.get(url)
+        .build()
+        .getAsObject(ListRestaurantResponse.class, new
+            ParsedRequestListener() {
+                @Override
+                public void onResponse(Object response) {
+                    if(response instanceof ListRestaurantResponse){
+                        //disable progress dialog
+                        progressDialog.dismiss();
+                        //null data check
+                        if (((ListRestaurantResponse) response).getData() !=
+                                null && ((ListRestaurantResponse) response).getData().size() > 0){
+                            adapter.swap(((ListRestaurantResponse)
+                                    response).getData());
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+                @Override
+                public void onError(ANError anError) {
+                    progressDialog.dismiss();
+                    Toast.makeText(DashboardActivity.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 }
 

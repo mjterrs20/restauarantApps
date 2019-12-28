@@ -11,7 +11,6 @@ public class DialogUtils {
         progressDialog.setMessage("Loading . . . ");
         progressDialog.show();
     }
-
     public static void closeDialog() {
         progressDialog.dismiss();
     }
