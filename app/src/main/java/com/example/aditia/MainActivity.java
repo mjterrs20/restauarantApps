@@ -1,4 +1,4 @@
-package com.example.restaurant;
+package com.example.aditia;
 
 import androidx.appcompat.app.AppCompatActivity;
 

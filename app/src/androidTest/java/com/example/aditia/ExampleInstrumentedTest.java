@@ -1,4 +1,4 @@
-package com.example.restaurant;
+package com.example.aditia;
 
 import android.content.Context;
 
