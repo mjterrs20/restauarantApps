@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,9 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (response instanceof LoginResponse) {
                     LoginResponse res = (LoginResponse) response;
                     if (res.getStatus().equals("success")) {
-                        String userId = email.getText().toString();
                         session.setIsLogin(true);
-                        session.setUserId(userId);
+                        session.setUserId(res.getLogin().getUserid());
+                        Log.i("disini","betul");//tambah ini
                         loginCheck();
                     } else {
                         Toast.makeText(LoginActivity.this, "Email atau Username Salah", Toast.LENGTH_SHORT).show();

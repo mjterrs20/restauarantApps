@@ -1,10 +1,10 @@
 package com.example.aditia;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +21,9 @@ import com.example.aditia.data.Session;
 import com.example.aditia.model.RestoranResponse;
 import com.example.aditia.utils.DialogUtils;
 import com.example.aditia.model.LoginResponse;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
     Session session;
@@ -50,11 +53,11 @@ public class ProfileActivity extends AppCompatActivity {
                 .getAsObject(LoginResponse.class, new ParsedRequestListener() {
                     @Override
                     public void onResponse(Object response) {
-                        System.out.println(nama.getText().toString());
                         progressDialog.dismiss();
-                        if (((LoginResponse) response).getLogin() != null)
+                        if (((LoginResponse) response).getLogin() != null) // error disini
                         {
                             loadDataRes(((LoginResponse) response));
+                            Log.i("disini","betul");
                         }
                     }
                     @Override
@@ -67,8 +70,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void loadDataRes(LoginResponse response) {
         nama.setText(response.getLogin().getNama());
         userId.setText(response.getLogin().getUserid());
-        System.out.println("ini cuy");
-        System.out.println(nama.getText().toString());
     }
     private void initBinding() {
         nama = findViewById(R.id.tv_name);

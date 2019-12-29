@@ -9,10 +9,8 @@ public class Constans {
     public static final String GET_LIST_RESTAURANT = WEB_URL_RESTORAN + "list/rm";
     public static final String GET_SEARCH_RESTAURANT = WEB_URL_RESTORAN +
             "list/cari/";
-    public static final String GET_PROFIL_USER = WEB_URL_RESTORAN +
-            "/user";
-    public static final String UPDATE_PROFILE_USER = WEB_URL_RESTORAN +
-            "/user/update";
+    public static final String GET_PROFIL_USER = WEB_URL_RESTORAN + "/user";
+    public static final String UPDATE_PROFILE_USER = WEB_URL_RESTORAN + "/user/update";
     public static final String CREATE_RESTAURANT = WEB_URL_RESTORAN + "restaurant/create";
     public static final String DELETE_RESTAURANT = WEB_URL_RESTORAN + "restaurant/delete";
 }

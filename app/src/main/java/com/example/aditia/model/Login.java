@@ -19,4 +19,5 @@ public class Login {
     public void setUserid(String userid) {
         this.userid = userid;
     }
+
 }
