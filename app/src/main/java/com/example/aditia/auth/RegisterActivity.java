@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
             if(email.getText().toString().equals("")){
                 Toast.makeText(RegisterActivity.this, "Email Tidak boleh kosong", Toast.LENGTH_SHORT).show();
             }else if(password.getText().toString().equals("")){
-                Toast.makeText(RegisterActivity.this, "Passeord Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Password Tidak boleh kosong", Toast.LENGTH_SHORT).show();
             }
             else if(userName.getText().toString().equals("")){
                 Toast.makeText(RegisterActivity.this, "Nama harus diisi", Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                             finish();
                         } else {
                             Toast.makeText(RegisterActivity.this,
-                                    "Username sudah digunakan", Toast.LENGTH_SHORT).show();
+                                    "Username sudah ada cuy", Toast.LENGTH_SHORT).show();
                         }
                         DialogUtils.closeDialog();
                     }

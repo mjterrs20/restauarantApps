@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         loginCheck();
     }
 
+    // buat check permissionnya
+    // untuk shared prefences lebih stabil di api 21
     private void checkPermission() {
         Dexter.withActivity(this)
                 .withPermissions(
@@ -126,9 +128,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (email.getText().toString().equals("")) {
-                    Toast.makeText(LoginActivity.this, "Email Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Email Jangan di kosongin cuy", Toast.LENGTH_SHORT).show();
                 } else if (password.getText().toString().equals("")) {
-                    Toast.makeText(LoginActivity.this, "Password Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Password juga ga boleh kosong", Toast.LENGTH_SHORT).show();
                 } else {
                     login();
                 }

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import com.example.aditia.DashboardActivity;
 import com.example.aditia.auth.LoginActivity;
 
+// buat simpan shared prefences lah pokoknya
 public class Session {
     SharedPreferences pref;
     SharedPreferences.Editor editor;

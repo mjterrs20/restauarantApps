@@ -18,9 +18,9 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.example.aditia.data.Constans;
 import com.example.aditia.data.Session;
-import com.example.aditia.model.RestoranResponse;
 import com.example.aditia.utils.DialogUtils;
 import com.example.aditia.model.LoginResponse;
+import com.example.aditia.model.ResturantResponse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Object response) {
                         progressDialog.dismiss();
-                        if (((LoginResponse) response).getLogin() != null) // error disini
+                        if (((LoginResponse) response).getLogin() != null) // error disini, loginrespose tidak dapat memanggil fungsi detLogin
                         {
                             loadDataRes(((LoginResponse) response));
                             Log.i("disini","betul");
@@ -123,16 +123,16 @@ public class ProfileActivity extends AppCompatActivity {
         AndroidNetworking.post(Constans.DELETE_RESTAURANT+"/"+userId)
                 .addBodyParameter("userid", userId)
                 .build()
-                .getAsObject(RestoranResponse.class, new ParsedRequestListener() {
+                .getAsObject(ResturantResponse.class, new ParsedRequestListener() {
                     @Override
                     public void onResponse(Object response) {
-                        if (response instanceof RestoranResponse) {
-                            RestoranResponse res = (RestoranResponse) response;
+                        if (response instanceof ResturantResponse) {
+                            ResturantResponse res = (ResturantResponse) response;
                             if (res.getStatus().equals("success")) {
-                                Toast.makeText(ProfileActivity.this,"Berhasil menghapus restauran", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this,"Yeay!! Restaurant dihapus", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
-                                Toast.makeText(ProfileActivity.this,"Gagal gagal menghapus restauran", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this,"Ciyee gagal hapus Restaurant", Toast.LENGTH_SHORT).show();
                             }
                         }
                         DialogUtils.closeDialog();

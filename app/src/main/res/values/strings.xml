@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Restaurant</string>
+    <string name="app_name">Hallo Resto</string>
+    <string name="app_profile">Profile</string>
+    <string name="create_resto">Buat Resto</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="register">Edit Register</string>
+    <string name="login">Edit Login</string>
 </resources>

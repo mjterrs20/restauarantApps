@@ -74,10 +74,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             RegisterResponse res = (RegisterResponse) response;
                             Log.i("disini","betul");
                             if (res.getStatus().equals("success")) {
-                                Toast.makeText(ChangePasswordActivity.this,"Berhasil edit Profil", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ChangePasswordActivity.this,"Berhasil ganti password", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
-                                Toast.makeText(ChangePasswordActivity.this,"Gagal Edit profil", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ChangePasswordActivity.this,"Gagal ganti password", Toast.LENGTH_SHORT).show();
                             }
                         }
                         DialogUtils.closeDialog();

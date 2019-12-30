@@ -14,7 +14,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.example.aditia.data.Constans;
 import com.example.aditia.data.Session;
-import com.example.aditia.model.RestoranResponse;
+import com.example.aditia.model.ResturantResponse;
 import com.example.aditia.utils.DialogUtils;
 
 public class CreateRestaurantActivity extends AppCompatActivity {
@@ -49,13 +49,13 @@ public class CreateRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(namarm.getText().toString().isEmpty()){
-                    Toast.makeText(CreateRestaurantActivity.this, "Nama Restaurant Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRestaurantActivity.this, "Nama Resto ga boleh kosong", Toast.LENGTH_SHORT).show();
                 }else if(kategori.getText().toString().isEmpty()){
-                    Toast.makeText(CreateRestaurantActivity.this, "Kategori Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRestaurantActivity.this, "Kategori ga boleh kosong", Toast.LENGTH_SHORT).show();
                 }else if(link_foto.getText().toString().isEmpty()){
-                    Toast.makeText(CreateRestaurantActivity.this, "Link Foto Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRestaurantActivity.this, "Link Foto ga boleh kosong", Toast.LENGTH_SHORT).show();
                 }else if(alamat.getText().toString().isEmpty()){
-                    Toast.makeText(CreateRestaurantActivity.this, "Alamat Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRestaurantActivity.this, "Alamat ga boleh kosong", Toast.LENGTH_SHORT).show();
                 } else {
                     createRestaurant();
                 }
@@ -71,16 +71,16 @@ public class CreateRestaurantActivity extends AppCompatActivity {
                 .addBodyParameter("link_foto", link_foto.getText().toString())
                 .addBodyParameter("alamat", alamat.getText().toString())
                 .build()
-                .getAsObject(RestoranResponse.class, new ParsedRequestListener() {
+                .getAsObject(ResturantResponse.class, new ParsedRequestListener() {
                     @Override
                     public void onResponse(Object response) {
-                        if (response instanceof RestoranResponse) {
-                            RestoranResponse res = (RestoranResponse) response;
+                        if (response instanceof ResturantResponse) {
+                            ResturantResponse res = (ResturantResponse) response;
                             if (res.getStatus().equals("success")) {
-                                Toast.makeText(CreateRestaurantActivity.this,"Success Create Restaurant", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateRestaurantActivity.this,"Yeaay berhasil buar restaurant", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
-                                Toast.makeText(CreateRestaurantActivity.this,"Failed Create Restaurant", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateRestaurantActivity.this,"Gagal buat Resto", Toast.LENGTH_SHORT).show();
                             }
                         }
                         DialogUtils.closeDialog();

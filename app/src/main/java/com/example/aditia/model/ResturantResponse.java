@@ -2,7 +2,7 @@ package com.example.aditia.model;
 
 import com.google.gson.annotations.Expose;
 
-public class RestoranResponse {
+public class ResturantResponse {
     @Expose
     private String data;
     @Expose

@@ -17,7 +17,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="242dp"
-                android:background="@color/colorPrimary"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="150dp"
@@ -41,7 +40,7 @@
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_high_quality_black_24dp"/>
+                    android:src="@drawable/ic_account_circle_black_24dp"/>
                 <TextView
                     android:id="@+id/tv_name"
                     android:textStyle="bold"
@@ -61,7 +60,7 @@
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_high_quality_black_24dp"/>
+                    android:src="@drawable/ic_email_black_24dp"/>
                 <TextView
                     android:id="@+id/tv_user_id"
                     android:layout_width="wrap_content"
